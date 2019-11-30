@@ -22,8 +22,8 @@ if __name__ == "__main__":
     for receiver in receivers:
         msg = MIMEMultipart('alternative')
         msg['Subject'] = os.getenv("SUBJECT")
+        msg['From'] = os.getenv("SENDER_NAME")
         msg['To'] = receiver
-        msg['From'] = os.getenv("SENDER")
         msg.attach(msg_part1)
         msg.attach(msg_part2)
 
