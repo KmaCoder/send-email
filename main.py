@@ -24,10 +24,14 @@ if __name__ == "__main__":
         os.getenv("SENDER"),
         os.getenv("PASSWORD")
     )
-    server.sendmail(
-        os.getenv("SENDER"),
-        os.getenv("RECEIVER").split(','),
-        msg.as_string()
-    )
+
+    receivers = os.getenv("RECEIVER").split(',')
+    for receiver in receivers:
+        server.sendmail(
+            os.getenv("SENDER"),
+            receiver,
+            msg.as_string()
+        )
+        print(f"Email sent to {receiver} successfully")
     server.quit()
-    print(f"Email sent to {os.getenv('RECEIVER')} successfully")
+    print(f"\n{len(receivers)} emails sent successfully")
